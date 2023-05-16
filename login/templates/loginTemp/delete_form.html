@@ -1,0 +1,26 @@
+{% extends 'loginTemp/login.html' %}
+{% load static %} 
+{% block content %}
+
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+            </div>
+
+                    <div style="position: relative; top:-80px">
+
+                    <h3 >هل انت متأكد من حذف هذه النتيجة؟</h3>
+                </div>
+                    <br>
+                <div style="position: relative; left:150px; top:-110px ">
+                    <form action="{% url 'delet_item' delete.id  %}" method="POST">
+                        {% csrf_token %}
+                        <a href="{% url 'search_history' customer.id %}">الغاء </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        
+                        <button type="submit" class="btn btn-primary">نعم </button>
+                    </form>
+                </div >
+            
+{%endblock%}

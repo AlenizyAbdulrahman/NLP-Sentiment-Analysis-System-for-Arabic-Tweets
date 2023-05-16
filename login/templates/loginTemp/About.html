@@ -1,0 +1,54 @@
+{% load static %} 
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= {% static '/css/ziyad/style.css' %}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/e6f2d7c200.js" crossorigin="anonymous"></script>
+    <title>عنا</title>
+</head>
+<body>
+    <nav>
+        <div class="wrapper">  
+          <div class="menu-items">
+         
+            <a href="{% url 'contact_us'  %}">تواصل معنا<i class="fa fa-fw fa-envelope"></i> </a>
+            <a href="{% url 'about_us'  %}" >من نحن؟<i class="fa-solid fa-circle-info"></i></a>
+            <a href="{% url 'my_index'  %}">الرئيسية<i class="fa fa-fw fa-home"></i></a>
+
+            <div class="search-icon-container">
+              <img class="search-icon active"
+              />
+              <img src={% static '/css/ziyad/images/close-icon.svg' %} alt="" class="close-icon" />
+            </div>
+          </div>
+  
+          <div class="menu-icon">
+            <img src={% static '/css/ziyad/images/menu-icon.svg' %} alt="" />
+          </div>
+        </div>
+      </nav>
+
+    <main class="hero-section">
+        <div class="wrapper">
+            <div class="left">
+                <h1 class="subject1">من نحن؟</h1>
+                <p>نحن مجموعة من طلاب علوم الحاسوب في جامعة الامام محمد بن سعود الاسلامية,
+                   عبدالرحمن العنزي ,يوسف التركي وزياد العنزي. لقد كنا ندس معًا منذ خمس سنوات.
+                   سوف  نتخرج هذا العام ان شاء الله ونود أن نقدم لكم مشروع تخرجنا.
+                   لقد أنشأنا موقعًا إلكترونيًا يوفر خدمة تحليل المشاعر،
+                   يمكنه تحليل المشاعر لأي نص معين يتعلق
+                   بأي موضوع تريده في فترة زمنية قصيرة فقط.
+                   تم تصميمه ليكون سهل الاستخدام قدر الإمكان.
+                   بدعم من كلية علوم الحاسب والمعلومات والدكتور زياد الشيخ
+                </p>
+            </div>
+       
+            
+                
+        </div>    
+    </main>
+</body>
+</html>

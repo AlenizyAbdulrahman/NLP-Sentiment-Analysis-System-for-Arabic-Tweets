@@ -1,0 +1,96 @@
+{% extends 'loginTemp/login.html' %}
+{% load static %} 
+
+
+
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light" dir="rtl">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' customer.id %} " style="padding-left: 30px">الصفحة الرئيسية</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+       
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_profile' customer.id %}">الملف الشخصي</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'search_history' customer.id %}">سجل البحث</a>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="{% url 'user_logout'  %}" tabindex="-1" aria-disabled="true">تسجيل الخروج</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+  <div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+            </div>
+
+            <span class="login100-form-title" style="position: relative; top:-90px; left:20px;">
+                الملف الشخصي
+            </span>
+
+            <form dir="rtl" method="POST">
+                {% csrf_token %}
+                <div class = "container" style="position: relative; top:-100px;  left:400px;">
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-7 col-form-label">اسم المستخدم</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" value={{customer.username}} readonly="readonly" >
+                    </div>
+                  </div>
+
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-7 col-form-label">الايميل</label>
+                  <div class="col-sm-10">
+                    {{ form.email }}
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-7 col-form-label">الاسم الاول</label>
+                  <div class="col-sm-10">
+                    {{ form.first_name }}
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-7 col-form-label">اسم العائلة</label>
+                  <div class="col-sm-10">
+                    {{ form.last_name }}
+                  </div>
+                </div>
+
+                {% comment %} <div class="row mb-3">
+                  <label for="inputPassword3" class="col-sm-7 col-form-label" >كلمة السر</label>
+                  <div class="col-sm-10">
+                    {{ form.password }}
+                  </div> {% endcomment %}
+                </div>
+                <br>
+                
+                {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ form.errors }}
+                  </div>
+                {% endif %}
+                
+                {% for i in messages %}
+                <div class="alert alert-success" role="alert" style="position: relative; top:-100px; right:-390px;">{{ i }}</div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success" id="btn-send" style="position: relative; top:-90px; right:-390px; min-width: 300px;">حفظ</button>
+                <a class="txt2" href="{% url 'password_change' %}" style="position: relative; top:-20px; right:-590px; ">تغيير كلمة المرور</a>
+            </div >
+              </form>
+
+
+              
+
+{% endblock %}

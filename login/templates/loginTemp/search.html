@@ -1,0 +1,77 @@
+{% extends 'loginTemp/login.html' %}
+{% load static %} 
+
+
+
+<title>search</title>
+{% block content %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" dir="rtl">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' customer.id %} " style="padding-left: 30px">الصفحة الرئيسية</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+       
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_profile' user.id %}">الملف الشخصي</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'search_history' customer.id %}">سجل البحث</a>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="{% url 'user_logout'  %}" tabindex="-1" aria-disabled="true">تسجيل الخروج</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+            </div>
+
+            <span class="login100-form-title" style="position: relative; top:-90px; right:-10px;">
+                سجل البحث
+            </span>
+            {% csrf_token %}
+            
+            <table class="table" style="position: relative; top:-90px; right:-50px;">
+                <thead >
+                  <tr >
+                    <th scope="col" >اجراء</th>
+                    <th scope="col" >سلبي</th>
+                    <th scope="col" >محايد</th>
+                    <th scope="col" >ايجابي</th>
+                    <th scope="col" >عدد التغريدات</th>
+                    <th scope="col" >العنوان</th>
+                  </tr>
+                </thead>
+                <tbody >
+                    {% for i in result %}
+                    <tr>
+                    <td>
+                    <a class="text-danger" href="{% url 'delet_item' i.id %}"><i class="fa fa-solid fa-trash fa-lg"></i></a>&nbsp;&nbsp;&nbsp;  
+                    <a  href="{% url 'show_result' i.id %}"><i class="fa fa-solid fa-eye fa-lg"></i></a>
+                    </td>
+                    <td>{{i.neg}}</td>
+                    <td>{{i.nat}}</td>
+                    <td>{{i.pos}}</td>
+                    <td>{{i.number}}</td>
+                    <td>{{i.title}}</td>
+
+                    </tr>
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+         
+            </div>
+{% endblock %}

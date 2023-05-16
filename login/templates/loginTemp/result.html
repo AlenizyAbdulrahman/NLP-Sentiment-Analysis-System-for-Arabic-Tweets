@@ -1,0 +1,88 @@
+{% extends 'loginTemp/login.html' %}
+{% load static %} 
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" dir="rtl">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' customer.id %} " style="padding-left: 30px">الصفحة الرئيسية</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+       
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_profile' user.id %}">الملف الشخصي</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'search_history' customer.id %}">سجل البحث</a>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="{% url 'user_logout'  %}" tabindex="-1" aria-disabled="true">تسجيل الخروج</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+
+
+
+
+    <div class="limiter" >
+      <div class="container-login100">
+        <div class="wrap-login100" id="element">
+          {% csrf_token %}
+          <div class="login100-pic js-tilt" data-tilt>
+          </div>
+
+          <span class="login100-form-title" style="position: relative; top:-90px; right:-10px;">
+              <h1>النتيجة  </h1>          </span>
+          
+          <h5 style="position: relative; top:-120px; right:-600px;" dir="rtl">العنوان      <span class="badge bg-secondary" > {{ title }} </span></h5>
+          <h5 style="position: relative; top:-120px; left:-200px;" dir="rtl">التغريدات      <span class="badge bg-secondary" > {{ number }}</span></h5>
+
+          <div class="card" style="position: relativ;  top:-100px;" dir="rtl">
+              <h5 class="card-header">الرسم البياني</h5>
+              <div class="card-body">
+                  <img class="card-img-top" src="data:image/png;base64, {{chart|safe}}" alt="Card image cap">
+              </div>
+            </div>
+          <div class="card" style="position: relativ;  top:-70px;" id="bie-chart" dir="rtl">
+              <h5 class="card-header">مخطط دائري</h5>
+              <div class="card-body">
+                  <img class="card-img-top" src="data:image/png;base64, {{pie|safe}}" alt="Card image cap">
+              </div>
+            </div>
+            
+
+        </div>
+      </div>
+    </div>
+    <button onclick="addScript()" class="btn btn-success" style="position: relative; top:-1200px; left:570px;">PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+      {% comment %} function addScript(url) {
+        var script = document.createElement('script');
+        script.type = 'application/javascript';
+        script.src = url;
+        document.head.appendChild(script);
+        html2pdf(document.body)   
+    } {% endcomment %}
+    function addScript() {
+      var element = document.getElementById("element")
+      var opt = {
+        margin:       -1,
+        filename:     'myResult.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'ex', format: 'letter', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+      html2pdf(element, opt)
+    }
+    </script>
+
+{%endblock%}

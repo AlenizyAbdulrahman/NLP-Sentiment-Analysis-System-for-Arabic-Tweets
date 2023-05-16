@@ -1,0 +1,85 @@
+{% load static %} 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تواصل معنا</title>
+    <script src="https://kit.fontawesome.com/e6f2d7c200.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&family=Roboto:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href= {% static '/css/ziyad/style.css' %} />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+  <body>
+
+
+    <div class="mobile-menu-container">
+      <div class="logo-container">
+        <div class="close-icon">
+          <img src={% static '/css/ziyad/images/close-icon.svg' %} alt="" />
+        </div>
+      </div>
+
+      <div class="mobile-menu-items">
+        <a href="{% url 'my_index'  %}">الرئيسية</a>
+        <a href="{% url 'contact_us'  %}">تواصل معنا</a>
+        <a href="{% url 'about_us'  %}">من نحن؟</a>
+
+
+      </div>
+    </div>
+
+    <nav>
+      <div class="wrapper">
+        <div class="menu-items">
+    
+          <a href="{% url 'contact_us'  %}">تواصل معنا <i class="fa fa-fw fa-envelope"></i></a>
+          <a href="{% url 'about_us'  %}" > من نحن؟ <i class="fa-solid fa-circle-info"></i></a>
+          <a href="{% url 'my_index'  %}">الرئيسية<i class="fa fa-fw fa-home"></i></a>
+
+          <div class="search-icon-container">
+            <img class="search-icon active"
+            />
+            <img src={% static '/css/ziyad/images/close-icon.svg' %} alt="" class="close-icon" />
+          </div>
+        </div>
+
+        <div class="menu-icon">
+          <img src={% static '/css/ziyad/images/menu-icon.svg' %} alt="" />
+        </div>
+      </div>
+    </nav>
+
+    <main class="hero-section">
+      <div class="wrapper">
+        <div class="left">
+          <h1 class="cont1">:إذا كانت لديك فكرة أو مشكلة في الموقع ، يرجى الاتصال بنا</h1>
+
+          <div class="cont">
+            <p>عبدالرحمن العنزي</p>
+            <a href=" mailto: Aomalenizy@sm.imamu.edu.sa"class="btn">البريد الالكتروني</a>
+            <p>يوسف التركي</p>
+            <a href="mailto:  yktalturki@sm.imamu.edu.sa" class="btn">البريد الالكتروني</a>
+            <p>زياد العنزي</p>
+            <a href="mailto: zunzizi@sm.imamu.edu.sa" class="btn">البريد الالكتروني</a>
+          </div>
+          
+          
+
+        </div>
+
+        </div>
+      </div>
+
+
+    </main>
+
+    <script src={% static '/css/ziyad/main.js' %}></script>
+  </body>
+</html>
